@@ -175,9 +175,13 @@ class LexicalAnalysis {
       if (this.analizerMultiplicativeOperators(token)) return;
       if (this.analizerIdentifiers(token)) return;
       
+      this.errors.push({
+        error: `Invalid or unexpected token in line ${token.index + 1}`
+      })
     })
 
     console.log(this.tokenTable)
+    console.log(this.errors)
     return "";
   }
 
