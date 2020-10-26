@@ -11,10 +11,16 @@ let r = async () => {
   if (programCode !== null) {
     let lexical = new LexicalAnalysis(programCode);
     let { hasErrors, data } = lexical.analizer();
-    
+
+    console.log(data)
+
     // if (!hasErrors) {
     //   let syntax = new SyntaxAnalysis(data);
-    //   syntax.analizer();
+    //   try {
+    //     syntax.analizer();
+    //   }catch (err) {
+    //     console.log(err);
+    //   }
     // }else {
     //   console.log(data)
     // }

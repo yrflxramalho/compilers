@@ -137,6 +137,21 @@ class LexicalAnalysis {
           continue;
         }
 
+        //check flaotnumbers and true of false;
+        if (tokenTypes.integersRegex.test(line[i])) {
+          let initNumber = i;
+          while(tokenTypes.integersRegex.test(line[i]) || line[i] === ".") {
+            i++;
+          }
+          let previousToken = line.slice(initNumber, i);
+          console.log(previousToken)
+          if(this.analizerNumber(previousToken, index)) {
+            continue;
+          }
+          
+        }
+
+
         if (tokenTypes.delimiters.indexOf(line[i]) > -1) {
           let previousToken = line.slice(initWord, i);
           this.checkWord(previousToken, index);

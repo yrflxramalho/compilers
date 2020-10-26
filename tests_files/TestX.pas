@@ -1,13 +1,13 @@
-program Test5;
+program Test;
 var
    A, B, R, I : integer;
+   A, B, R, I : integer;
+   A, B, R, I : integer;
 begin
-   for I := 1 to 5 do
-   begin
-      A := A * A;
-      B := B and A;
-      R := A + B
-   end
+      if (C) then 
+      c := 2.1;
+      c := 2;
+      else
 end.
 
 {utilizar mais de um for - encadeado}
