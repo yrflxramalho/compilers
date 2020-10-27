@@ -28,6 +28,7 @@ class LexicalAnalysis {
       }
     }
     this.programCode = code;
+    
   }
 
   filter() {
@@ -128,6 +129,8 @@ class LexicalAnalysis {
 
     splitedCode.forEach((line, index) => {
       let initWord = 0;
+      line = line.replace("\r", "");
+
       for (let i = 0; i < line.length; i++) {
 
         if (line[i] === " ") {
@@ -137,24 +140,27 @@ class LexicalAnalysis {
           continue;
         }
 
-        //check flaotnumbers and true of false;
-        if (tokenTypes.integersRegex.test(line[i])) {
+        //check numbers;
+        //1*3;
+
+        if (tokenTypes.integersRegex.test(line[i]) && initWord === i ) {
           let initNumber = i;
           while(tokenTypes.integersRegex.test(line[i]) || line[i] === ".") {
             i++;
           }
           let previousToken = line.slice(initNumber, i);
-          console.log(previousToken)
+         
           if(this.analizerNumber(previousToken, index)) {
+            initWord = i--;
+            initWord = i + 1;
             continue;
           }
-          
         }
-
 
         if (tokenTypes.delimiters.indexOf(line[i]) > -1) {
           let previousToken = line.slice(initWord, i);
           this.checkWord(previousToken, index);
+         
 
           if (line[i] === ":" && i !== line.length - 1) {
             if (line[i + 1] === "=") {
@@ -164,6 +170,7 @@ class LexicalAnalysis {
               continue;
             }
           }
+          
           this.addToken(line[i], "delimitador", index)
           initWord = i + 1;
           continue;

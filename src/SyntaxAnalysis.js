@@ -68,7 +68,7 @@ class SyntaxAnalysis {
       if (this.identifiersList()) {
         if (this.currentToken.token === ':') {
           this.nextToken();
-          if (this.currentToken.token === 'integer' || this.currentToken.token === 'real' || this.currentToken.token === 'boolean') {
+          if (this.currentToken.token === 'integer' || this.currentToken.token === 'real' ||this.currentToken.token === 'ponto flutuante' || this.currentToken.token === 'boolean') {
             this.nextToken();
             if (this.currentToken.token === ';') {
               this.nextToken();

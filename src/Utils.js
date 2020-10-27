@@ -9,6 +9,5 @@ module.exports = {
     }catch(err) {
       return null;
     }
-  }
-
+  },
 }
