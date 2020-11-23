@@ -8,7 +8,7 @@ const tokenTypes = {
   relationalOperators: ["=", "<", ">", "<=", ">=", "<>"], //ok
   additiveOperators: ["+", "-", "or"],
   multiplicativeOperators: ["*", "/"],
-  multiplicativeAnd: ["and"],
+  multiplicativeAnd: "and",
 }
 
 class LexicalAnalysis {
@@ -74,6 +74,15 @@ class LexicalAnalysis {
 
     return false;
   }
+  analizerAdditiveOr(token, line) {
+    //check keywords
+    if (token === "or") {
+      this.addToken(token, "operador de adição", line)
+      return true;
+    }
+
+    return false;
+  }
 
   analizerRelationalOperators(token, line) {
     //check keywords
@@ -111,8 +120,9 @@ class LexicalAnalysis {
     if (token.trim() === "" || token === "\n") return
 
     if (this.analizerKeywords(token, line)) return;
-    if (this.analizerIdentifiers(token, line)) return;
     if (this.analizerMultiplicativeAnd(token, line)) return;
+    if (this.analizerAdditiveOr(token, line)) return;
+    if (this.analizerIdentifiers(token, line)) return;
     if (this.analizerNumber(token, line)) return;
 
     this.errors.push({
@@ -139,9 +149,6 @@ class LexicalAnalysis {
           this.checkWord(previousToken, index);
           continue;
         }
-
-        //check numbers;
-        //1*3;
 
         if (tokenTypes.integersRegex.test(line[i]) && initWord === i ) {
           let initNumber = i;

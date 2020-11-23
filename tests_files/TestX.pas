@@ -1,12 +1,17 @@
-program Test;
+program Test4;
 var
    A, B, R, I : integer;
-   A, B, R, I : integer;
-   A, B, R, I : integer;
+procedure teste (A, B);
+var
+   S ,X : real;
 begin
-      c := (2);
-      c := 2;
-end.
+   S := A + B * X;
+end
 
-{utilizar mais de um for - encadeado}
-{cuidado com o ";" entenda o que a gramática está pedindo}
+begin
+   while (A <= 5) do
+      A := A + 1;
+      B := B - 1;
+      Z := A + B;
+      I := I + 1;
+end.

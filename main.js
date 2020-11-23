@@ -1,7 +1,7 @@
 const path = require("path");
 const { readFile } = require("./src/Utils")
 const { LexicalAnalysis } = require("./src/LexicalAnalysis")
-const { SyntaxAnalysis } = require("./src/SyntaxAnalysis")
+const { SyntaxAnalysis } = require("./src/SyntaxAnalysis2")
 
 let r = async (filepath) => {
   let programCode = await readFile(path.join(__dirname, filepath))
@@ -9,6 +9,9 @@ let r = async (filepath) => {
   if (programCode !== null) {
     let lexical = new LexicalAnalysis(programCode);
     let { hasErrors, data } = lexical.analizer();
+
+    // console.log(data);
+    // return;
 
     if (!hasErrors) {
       let syntax = new SyntaxAnalysis(data);
